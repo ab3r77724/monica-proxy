@@ -14,6 +14,8 @@ import (
 func RegisterRoutes(e *echo.Echo) {
 	// 添加Bearer Token认证中间件
 	e.Use(middleware.BearerAuth())
+	// 添加IP限流中间件
+	e.Use(middleware.RateLimit())
 
 	// ChatGPT 风格的请求转发到 /v1/chat/completions
 	e.POST("/v1/chat/completions", handleChatCompletion)
